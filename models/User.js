@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
           ref: this,
         },
       ],
+},
+{
+  toJSON: {
+    virtuals: true,
+  },
+  id: false,
 });
 
 userSchema.virtual("friendCount").get(function () {
@@ -27,5 +33,34 @@ userSchema.virtual("friendCount").get(function () {
 const User = mongoose.model("User", userSchema);
 
 const handleError = (err) => console.error(err);
+
+User.find({})
+  .exec()
+  .then(async collection => {
+    if (collection.length === 0) {
+      const results = await User.insertMany(
+        [
+          { username: "user01",
+            email: "user01@email.com",
+            thoughts: [],
+            friends: []
+          },
+          { username: "user02",
+          email: "user02@email.com",
+          thoughts: [],
+          friends: []
+        },
+        { username: "user03",
+        email: "user03@email.com",
+        thoughts: [],
+        friends: []
+      },
+        ]
+      );
+      return console.log('Departments inserted', results);
+    }
+    return console.log('Already populated');
+  })
+  .catch(err => handleError(err));
 
 module.exports = User;

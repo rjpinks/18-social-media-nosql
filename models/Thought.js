@@ -13,7 +13,13 @@ const thoughtSchema = new mongoose.Schema({
     username: { type: String, required: true },
     //reactions: {  } an array of nested docs created with the reactionSchema
     reactions: [reactionSchema]
-});
+},
+{
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  });
 
 thoughtSchema.virtual("reactionCount").get(function () {
     return this.reactions.length;
