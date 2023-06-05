@@ -12,7 +12,7 @@ Mongoose, express, and MongoDB are all necessary for this app. Nodemon was used,
 
 Simply use Postman or Insomnia to test the routes /api/thoughts /api/thoughts/single and api/thoughts/:thoughtId/reactions and also /api/users
 
-[Youtube Link](https://www.youtube.com/watch?v=L5iGyYex5sU)
+[Youtube Link to the demonstration](https://www.youtube.com/watch?v=L5iGyYex5sU)
 
 ## Credits
 
